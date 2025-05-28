@@ -34,7 +34,7 @@ def login(username: str, password: str) -> Dict[str, Any]:
     try:
         # Verify the provided password against the stored hash
         ph.verify(teacher["password"], password)
-    except Exception:
+    except VerifyMismatchError:
         raise HTTPException(status_code=401, detail="Invalid username or password")
     
     # Return teacher information (excluding password)
